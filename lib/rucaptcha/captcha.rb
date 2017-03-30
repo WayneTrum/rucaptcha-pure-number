@@ -20,7 +20,7 @@ module RuCaptcha
       # Genrate random Captcha code
       def random_chars
         chars = SecureRandom.random_number(9999).to_s
-        while chars.length < 4
+        while chars.length < RuCaptcha.config.len
           chars = "0" + chars
         end
         chars
