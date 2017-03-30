@@ -25,6 +25,23 @@ module RuCaptcha
         end
         chars
       end
+      # def random_chars
+      #   if RuCaptcha.config.chars_type == "number"
+      #     chars = SecureRandom.random_number(9999).to_s
+      #     while chars.length < RuCaptcha.config.len
+      #       chars = "0" + chars
+      #     end
+      #     chars
+      #   elsif RuCaptcha.config.chars_type == "letter"
+      #     chars = SecureRandom.hex(RuCaptcha.config.len / 2).downcase
+      #     chars.gsub!(/[0123456789]/i, (rand(8) + 2).to_s)
+      #     chars
+      #   else
+      #     chars = SecureRandom.hex(RuCaptcha.config.len / 2).downcase
+      #     chars.gsub!(/[0ol1]/i, (rand(8) + 2).to_s)
+      #     chars
+      #   end
+      # end
 
       # Create Captcha image by code
       def create(code)
@@ -82,6 +99,7 @@ module RuCaptcha
         CODE
         command.strip!
         out, err, _st = Open3.capture3(command)
+        puts command
         warn "  RuCaptcha #{err.strip}" if err.present?
         out
       end
